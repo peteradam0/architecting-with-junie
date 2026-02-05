@@ -1,13 +1,11 @@
 ---
-apply: always
+apply: off
 ---
 
-# Working with Junie: AI-Augmented Development in 2026
-
-This guide outlines the optimal way for developers to collaborate with Junie, our AI coding agent, to maintain high velocity, code quality, and cost-efficiency.
+Working with Junie
 
 ## 1. Junie's Role & Seniority
-In 2026, Junie is treated as a **Staff-Level Software Engineer Agent**. 
+Junie is treated as a **Staff-Level Software Engineer Agent**.
 - **What this means:** You don't just give it "line-by-line" instructions. Instead, you provide intent, architectural constraints, and high-level requirements.
 - **Trust but Verify:** While Junie has deep project context and follows rules perfectly, the human developer remains the "Architect" and "Final Approver".
 
@@ -17,7 +15,7 @@ In 2026, Junie is treated as a **Staff-Level Software Engineer Agent**.
 - **Refactoring:** Modernizing code (e.g., converting classes to Records, implementing Virtual Threads).
 - **Test Generation:** Writing unit, integration, and performance tests for existing or new code.
 - **Bug Fixing:** Providing a stack trace or a failing test and letting Junie "Self-Heal" the codebase.
-- **Documentation:** Keeping `architecture.md`, API docs, and KDoc up to date.
+- **Documentation:** Keeping `architecture.md`, API docs, and KDoc up to date with new functionalities.
 
 ### ❌ Sub-optimal Tasks
 - **Vague Architecture Decisions:** Don't ask Junie "What should I build?". Instead, ask "Given our `architecture.md`, how should we implement X?".
@@ -26,8 +24,8 @@ In 2026, Junie is treated as a **Staff-Level Software Engineer Agent**.
 ## 3. Efficient & Cost-Effective Usage
 To minimize token usage and maximize quality:
 - **Enforce Architectural Alignment:** Ensure Junie scans `.aiassistant/rules/architecture.md` by explicitly mentioning it in your initial prompt (e.g., "Implement X following our `architecture.md`"). Since it has `apply: always`, Junie uses it as a system prompt, but explicit mention ensures high-priority alignment.
-- **Cost Awareness & Tracking:** 
-    - Use the `/stats` or `/tokens` command (if available in your Junie version) to check usage for the current session.
+- **Cost Awareness & Tracking:**
+    - Use the `/stats` or `/tokens` command to check usage for the current session.
     - Monitor the "Token Meter" in the Junie UI.
     - Avoid "Looping": If Junie fails a task 3 times, stop and provide manual guidance rather than letting it retry blindly.
 - **Use Context Wisely:** Use `@projectStructure` or reference specific files only when needed. Don't force Junie to read the whole repo for a single file fix.
@@ -38,38 +36,11 @@ To minimize token usage and maximize quality:
 Follow this routine for standard daily development:
 
 1.  **Stand-up & Context:** Identify your task (e.g., a ticket). Open the relevant files in your IDE.
-2.  **Architectural Alignment:** Start the chat by referencing the blueprint: *"@projectStructure Scan `.aiassistant/rules/architecture.md`. I am about to implement [Task Name]. Does this conflict with our current architecture?"*
+2.  **Architectural Alignment:** Start the chat by referencing the blueprint: *"@projectStructure Scan `.aiassistant/rules/architecture.md`. I am a [your role] about to implement [Task Name]. Does this conflict with our current architecture?"*
 3.  **The "Plan First" Loop:**
     - Ask for a plan: *"Provide a step-by-step plan for [Task Name]. Don't write code yet."*
     - Review the plan for domain alignment, record usage, and virtual threads.
     - Adjust: *"The plan looks good, but move the validation logic to the Service layer."*
 4.  **Implementation (Code Mode):** Once the plan is approved, say *"Proceed with implementation."*
 5.  **Cost Check:** Run `/tokens` to ensure the implementation didn't blow the budget.
-6.  **Self-Healing Verification:** Junie will automatically run tests. If they fail, let Junie attempt one fix. If it fails again, step in.
-7.  **Final Review:** Use the IDE diff tool to review Junie's changes before committing.
-
-## 5. The 2026 Workflow: Planning → Implementation
-The most successful way to work with Junie follows this loop:
-
-1.  **Context Gathering:** Point Junie to the relevant parts of the codebase.
-2.  **The "Plan First" Prompt:** 
-    - *User:* "I need to add a 'Category' field to Products. Don't code yet. Provide a plan."
-    - *Junie:* Provides a multi-step plan (Database -> Entity -> DTO -> Service -> Controller).
-3.  **Architectural Review:** You review the plan. "Looks good, but use an Enum for Category."
-4.  **Implementation:** "Proceed with the plan."
-5.  **Verification:** Junie runs `./gradlew test` (or specific tests) automatically to verify the changes.
-
-## 5. Key Features of Junie
-- **Tool Integration:** Junie can read/write files, run terminal commands, and perform searches across the project.
-- **Semantic Awareness:** It understands the *intent* behind the code, not just the syntax.
-- **Rule Adherence:** It strictly follows the "Gold Standard" defined in `.aiassistant/rules/architecture.md`.
-- **Self-Healing:** If a command it runs fails, it analyzes the output and attempts to fix its own code.
-
-## 6. Pro-Tips for 2026
-- **Prompting is Architecting:** In 2026, your "code" is often the set of instructions and rules you provide.
-- **Observability First:** Always ask Junie to include Micrometer metrics or Actuator health checks in new services.
-- **Virtual Threads:** Remind Junie to leverage `java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()` for I/O intensive tasks if not already configured globally.
-
----
-*Note: This document is dynamic. As Junie's capabilities evolve, so should these practices.*
-
+6.  **Final Review:** Use the IDE diff tool to review Junie's changes before committing.
