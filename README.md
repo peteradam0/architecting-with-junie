@@ -17,3 +17,6 @@ To get started, open the **AI Assistant** tab and try these prompts:
 - **Testing**: `"Generate a JUnit 5 test for the GreetingController."`
 
 ## 🛠 Project Rules
+- [Architecture](.aiassistant/rules/architecture.md) - Overview of the project structure and flow.
+- [Contributing](.aiassistant/rules/contributing.md) - Guidelines for contributing to the project.
+- [Presentation](presentation.md) - Marp presentation for the project.
