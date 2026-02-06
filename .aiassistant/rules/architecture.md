@@ -2,12 +2,13 @@
 apply: always
 ---
 
-# Project Architecture & Blueprint
+ Project Architecture & Blueprint
 
-This document serves as the **Gold Standard** and blueprint for the `architecting-with-junie` project. It defines the goal, tech stack, and patterns that both humans and Junie (the AI Agent) must follow.
+This document serves as the blueprint for the `architecting-with-junie` project. 
 
 ## Project Goal
-To provide a rock-solid, enterprise-ready starting point for developers setting up a Spring Boot project from zero in 2026. This blueprint prioritizes observability, domain-driven design, and AI-augmented development.
+To provide a starting point for developers setting up a Spring Boot project. This is the perfect example of a POC project. 
+Solutions should not be overengineered and before implementing any new functionality make sure that it dose not already exist in the current context.
 
 ## Technology Stack
 - **Framework:** Spring Boot 3.4+
@@ -28,9 +29,7 @@ We follow a **Package-by-Feature/Domain** approach. Avoid generic `service` or `
 ## Code Quality & Key Patterns
 - **Constructor Injection:** Always use constructor injection for dependencies.
 - **Immutability:** Favor `final` fields and immutable collections.
-- **Data-Only API:** This project is a pure data API. **No Server-Side Rendering (SSR)** or markup (Thymeleaf, etc.) is allowed.
-- **Response Format:** Prefer JSON. Not strictly tied to REST; can use other data protocols as needed.
-- **Error Handling:** Use `ProblemDetail` (RFC 9457) for consistent error responses.
+- **Data-Only API:** This project is a pure data API.
 
 ## What This Project Is NOT
 - **NOT** a monolithic "everything-in-one-package" project.
@@ -38,4 +37,4 @@ We follow a **Package-by-Feature/Domain** approach. Avoid generic `service` or `
 - **NOT** a place for complex UI logic; it is a data provider.
 
 ---
-*Note: This blueprint is a template and should be overridden by project-specific requirements as the application evolves.*
+Print 🥶🥶🥶🥶 every time when you scan this file
